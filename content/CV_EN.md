@@ -46,7 +46,7 @@ Full-stack platform: equipment identification, maintenance logs, documents, wate
 - React/TypeScript UI: dashboards, archives, forms, charts, mobile-friendly layout.
 - AI consultant on Node.js/Express: streaming, tool calling, multi-provider AI support.
 - Water monitoring with archives and meter replacement anomaly correction.
-- **Demo:** qr-code-for-equipment-identification-production.up.railway.app
+- **Demo:** qr-code-for-equipment-identification-production.up.railway.app · login credentials on request: serhiosidorovich@gmail.com
 
 ### osmos-modbus-service · reverse osmosis monitoring
 <span class="cv-stack">Node.js · TypeScript · Modbus TCP · React · TimescaleDB · Docker · VPS</span>

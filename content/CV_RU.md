@@ -49,7 +49,7 @@ Full-stack платформа: идентификация оборудовани
 - React/TypeScript UI: дашборды, архивы, формы, графики, мобильный интерфейс.
 - AI-консультант на Node.js/Express: streaming, tool calling, несколько AI-провайдеров.
 - Мониторинг воды с архивом и корректировкой аномалий при замене счётчиков.
-- **Демо:** qr-code-for-equipment-identification-production.up.railway.app
+- **Демо:** qr-code-for-equipment-identification-production.up.railway.app · логин и пароль по запросу: serhiosidorovich@gmail.com
 
 ### osmos-modbus-service · мониторинг обратного осмоса
 <span class="cv-stack">Node.js · TypeScript · Modbus TCP · React · TimescaleDB · Docker · VPS</span>
