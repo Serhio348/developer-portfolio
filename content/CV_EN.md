@@ -18,8 +18,8 @@ Full-stack developer with hands-on experience building production-ready web appl
 **Backend:** Node.js, Express, REST API, SSE, middleware  
 **Database:** Supabase, PostgreSQL, Prisma, SQL migrations, RLS  
 **AI:** Claude API, Gemini API, DeepSeek, multi-provider AI  
-**Integrations:** Google Drive API, Google Sheets, Google Apps Script, Telegram Bot API, QR workflows  
-**Tools:** Git, GitHub, Railway, Cursor IDE, environment configuration
+**Integrations:** Google Drive API, Google Sheets, Google Apps Script, Telegram Bot API, Modbus TCP, QR workflows  
+**Tools:** Git, GitHub, Docker, Railway, VPS/Nginx, Cursor IDE, environment configuration
 
 ---
 
@@ -64,6 +64,25 @@ Full-stack web application for production operations: equipment identification, 
 
 ---
 
+### osmos-modbus-service — reverse osmosis monitoring
+
+**Role:** Full-stack / IoT developer  
+**Stack:** Node.js, TypeScript, Express, modbus-serial, React, Recharts, React Flow, TimescaleDB, Docker, Nginx
+
+Modbus TCP polling microservice for a reverse osmosis plant (Weintek HMI) with REST API and web dashboard. Part of the water and equipment management ecosystem, deployed on VPS.
+
+- Built a Modbus TCP poller with block reads of holding registers and coils, decoding, and parameter scaling.
+- Implemented REST API: live snapshot (`/api/osmos`), health with ok/degraded/down states, TimescaleDB metrics archive.
+- Developed a React dashboard: SVG HMI, React Flow animated diagram, parameter table, and Recharts charts.
+- Configured TimescaleDB hypertables, compression, and continuous aggregates; deployed via Docker Compose and Nginx.
+
+**Outcome:** operators view pressures, tank levels, flows, and valve/pump states in the browser without the HMI screen.
+
+**GitHub:** https://github.com/Serhio348/osmos-modbus-service  
+**Demo:** on request — internal industrial network
+
+---
+
 ### Employees — employee and PPE tracking
 
 **Role:** Full-stack Developer  
@@ -94,6 +113,7 @@ Internal HR system for employee and PPE management: web app, Telegram bot, issua
 - Implemented water consumption analytics with proper handling of meter replacement anomalies.
 - Prepared deployment architecture for Railway with separated frontend and backend services.
 - Built the Employees system with a Telegram bot for employee and PPE tracking and PDF/Excel card export.
+- Created the osmos-modbus-service microservice for reverse osmosis Modbus TCP monitoring with dashboard and TimescaleDB archive.
 
 ---
 
@@ -109,4 +129,5 @@ Higher education in industrial automation, 2009
 **Work format:** onsite / remote / hybrid  
 **GitHub:** https://github.com/Serhio348  
 **QR platform demo:** https://qr-code-for-equipment-identification-production.up.railway.app  
-**Employees:** https://employees-production-c5df.up.railway.app (demo on request)
+**Employees:** https://employees-production-c5df.up.railway.app (demo on request)  
+**Osmos Modbus:** https://github.com/Serhio348/osmos-modbus-service (demo on request)

@@ -81,6 +81,35 @@ const PROJECTS: ProjectItem[] = [
       en: 'Demo on request — personal data protected',
     },
   },
+  {
+    id: 'osmos-modbus',
+    eyebrow: { ru: 'Промышленный IoT', en: 'Industrial IoT' },
+    title: { ru: 'osmos-modbus-service', en: 'osmos-modbus-service' },
+    description: {
+      ru: 'Микросервис мониторинга установки обратного осмоса: опрос Weintek HMI по Modbus TCP, REST API и веб-дашборд с HMI, схемой и архивом.',
+      en: 'Reverse osmosis plant monitoring microservice: Weintek HMI polling over Modbus TCP, REST API, and a web dashboard with HMI, flow diagram, and history.',
+    },
+    highlights: {
+      ru: [
+        'Modbus TCP poller с блочным чтением регистров и coils.',
+        'REST API: live-снимок, health ok/degraded/down, архив метрик.',
+        'Дашборд: SVG HMI, React Flow, таблица, графики Recharts.',
+        'TimescaleDB, Docker Compose и Nginx на VPS.',
+      ],
+      en: [
+        'Modbus TCP poller with block reads of registers and coils.',
+        'REST API: live snapshot, health ok/degraded/down, metrics archive.',
+        'Dashboard: SVG HMI, React Flow, table, and Recharts charts.',
+        'TimescaleDB, Docker Compose, and Nginx on VPS.',
+      ],
+    },
+    tags: ['Modbus TCP', 'Node.js', 'TypeScript', 'React', 'TimescaleDB', 'Docker', 'IoT'],
+    repoUrl: 'https://github.com/Serhio348/osmos-modbus-service',
+    demoNote: {
+      ru: 'Демо по запросу — внутренняя промышленная сеть',
+      en: 'Demo on request — internal industrial network',
+    },
+  },
 ]
 
 const PROFILE = {
@@ -176,7 +205,8 @@ const content: Record<Language, Content> = {
     ],
     projectsEyebrow: 'Portfolio',
     projectsTitle: 'Projects',
-    projectsSubtitle: 'Production-ready full-stack applications for manufacturing, HR, and AI integrations.',
+    projectsSubtitle:
+      'Production-ready full-stack applications for manufacturing, HR, industrial IoT, and AI integrations.',
     stackTitle: 'Tech stack',
     stack: [
       'MCP',
@@ -200,16 +230,21 @@ const content: Record<Language, Content> = {
       'DeepSeek',
       'Telegram Bot API',
       'grammy',
+      'Modbus TCP',
+      'TimescaleDB',
+      'React Flow',
+      'Docker',
       'SSE',
       'Railway',
       'Cursor IDE',
     ],
     demoTitle: 'Demo access',
-    demoDescription: 'Live production deployments on Railway.',
+    demoDescription: 'Live demos and production deployments.',
     demoItems: [
       ['QR platform', PROFILE.liveDemoUrl],
       ['Employees', PROFILE.employeesDemoUrl],
       ['Employees demo', 'On request — personal data protected'],
+      ['Osmos Modbus', 'On request — internal industrial network'],
       ['Location', PROFILE.locationEn],
       ['Education', PROFILE.educationEn],
       ['Languages', PROFILE.languagesEn],
@@ -262,7 +297,8 @@ const content: Record<Language, Content> = {
     ],
     projectsEyebrow: 'Портфолио',
     projectsTitle: 'Проекты',
-    projectsSubtitle: 'Production-ready full-stack приложения для производства, HR и AI-интеграций.',
+    projectsSubtitle:
+      'Production-ready full-stack приложения для производства, HR, промышленного IoT и AI-интеграций.',
     stackTitle: 'Технологии',
     stack: [
       'MCP',
@@ -286,16 +322,21 @@ const content: Record<Language, Content> = {
       'DeepSeek',
       'Telegram Bot API',
       'grammy',
+      'Modbus TCP',
+      'TimescaleDB',
+      'React Flow',
+      'Docker',
       'SSE',
       'Railway',
       'Cursor IDE',
     ],
     demoTitle: 'Демо-доступ',
-    demoDescription: 'Рабочие production-деплои на Railway.',
+    demoDescription: 'Демо и production-деплои.',
     demoItems: [
       ['QR-платформа', PROFILE.liveDemoUrl],
       ['Employees', PROFILE.employeesDemoUrl],
       ['Employees demo', 'По запросу — защита персональных данных'],
+      ['Osmos Modbus', 'По запросу — внутренняя промышленная сеть'],
       ['Локация', PROFILE.locationRu],
       ['Образование', PROFILE.educationRu],
       ['Языки', PROFILE.languagesRu],
@@ -587,7 +628,7 @@ function App() {
         >
           <div className="slide-content stack-layout">
             <p className="section-kicker reveal-item">{t.stackTitle}</p>
-            <h2 className="reveal-item">MCP · Telegram · React · TypeScript · Node.js · AI</h2>
+            <h2 className="reveal-item">MCP · Modbus · React · TypeScript · Node.js · AI</h2>
             <div className="stack-list">
               {t.stack.map((technology, index) => (
                 <span
