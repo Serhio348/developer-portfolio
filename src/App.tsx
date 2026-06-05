@@ -113,7 +113,8 @@ const PROJECTS: ProjectItem[] = [
 ]
 
 const PROFILE = {
-  name: 'Siarhei Sidarovich',
+  nameRu: 'Сидорович Сергей Юрьевич',
+  nameEn: 'Siarhei Sidarovich',
   locationRu: 'Брест, Беларусь',
   locationEn: 'Brest, Belarus',
   email: 'serhiosidorovich@gmail.com',
@@ -130,6 +131,11 @@ const PROFILE = {
   workFormatEn: 'Onsite / remote / hybrid',
 }
 
+const CV_DOWNLOADS = {
+  ru: { href: '/cv/CV_RU.pdf', filename: 'CV_Sidorovich_Sergey_Yurevich_RU.pdf' },
+  en: { href: '/cv/CV_EN.pdf', filename: 'CV_Siarhei_Sidarovich_EN.pdf' },
+} as const
+
 type Content = {
   nav: string[]
   languageLabel: string
@@ -141,14 +147,13 @@ type Content = {
   githubCta: string
   aboutTitle: string
   about: string
-  mcpEyebrow: string
-  mcpTitle: string
-  mcpDescription: string
-  mcpPoints: string[]
-  telegramEyebrow: string
-  telegramTitle: string
-  telegramDescription: string
-  telegramPoints: string[]
+  capabilitiesEyebrow: string
+  capabilitiesTitle: string
+  capabilitiesDescription: string
+  capabilitiesPoints: string[]
+  growthEyebrow: string
+  growthTitle: string
+  growthText: string
   projectsEyebrow: string
   projectsTitle: string
   projectsSubtitle: string
@@ -183,26 +188,21 @@ const content: Record<Language, Content> = {
     aboutTitle: 'About',
     about:
       'Full-stack developer focused on business automation, AI integrations, and production-ready web systems on React, TypeScript, Node.js, and Supabase/PostgreSQL.',
-    mcpEyebrow: 'MCP servers',
-    mcpTitle: 'Model Context Protocol — AI agents connected to real data',
-    mcpDescription:
-      'MCP (Model Context Protocol) is the open standard for connecting AI assistants to external tools and data. I build typed MCP servers so agents in Cursor and Claude can work with equipment, documents, and maintenance logs safely.',
-    mcpPoints: [
-      'MCP server for Google Drive & Sheets: equipment CRUD, maintenance logs, file search.',
-      'Tools with Zod validation and Russian descriptions — clear contracts for LLM agents.',
-      'stdio transport via @modelcontextprotocol/sdk — works in Cursor IDE and Claude Desktop.',
-      'Wrapper over Google Apps Script backend — no duplicated business logic.',
+    capabilitiesEyebrow: 'What I build',
+    capabilitiesTitle: 'Full-stack solutions from idea to production',
+    capabilitiesDescription:
+      'I combine web platforms, AI integrations, industrial data, and automation into products that solve real business and manufacturing problems.',
+    capabilitiesPoints: [
+      'MCP servers and AI agents: typed tools for Drive, Sheets, documents, and production data.',
+      'Full-stack platforms: React/TypeScript, Node.js, Supabase/PostgreSQL, REST API, integrations.',
+      'Industrial IoT and monitoring: Modbus TCP, dashboards, time-series archives, Docker/VPS.',
+      'Mobile interfaces: Telegram bots, responsive UI, internal HR and inventory systems.',
+      'Production delivery: Railway/VPS deploy, data security, maintainable architecture.',
     ],
-    telegramEyebrow: 'Employees · Telegram bot',
-    telegramTitle: 'Telegram bot for employee and PPE tracking',
-    telegramDescription:
-      'Part of the Employees project on Railway: a mobile chat interface to the same Express/Prisma backend as the web app.',
-    telegramPoints: [
-      'Search employees and view issued PPE / inventory directly in Telegram.',
-      'Check SIZ norms and upcoming replacement deadlines without opening the browser.',
-      'Uses the Employees REST API — one data source for web and bot.',
-      'Access control for personal data; public demo without credentials is not available.',
-    ],
+    growthEyebrow: 'Forward momentum',
+    growthTitle: 'Always learning, always building',
+    growthText:
+      'I actively explore new technologies and approaches — from AI tooling to industrial protocols — and turn that knowledge into solutions with measurable impact. I set ambitious goals, take ownership of outcomes, and move toward them consistently.',
     projectsEyebrow: 'Portfolio',
     projectsTitle: 'Projects',
     projectsSubtitle:
@@ -275,26 +275,21 @@ const content: Record<Language, Content> = {
     aboutTitle: 'Обо мне',
     about:
       'Full-stack разработчик в автоматизации бизнес-процессов, AI-интеграциях и production-ready системах на React, TypeScript, Node.js и Supabase/PostgreSQL.',
-    mcpEyebrow: 'MCP-серверы',
-    mcpTitle: 'Model Context Protocol — AI-агенты на реальных данных',
-    mcpDescription:
-      'MCP (Model Context Protocol) — открытый стандарт подключения AI-ассистентов к внешним инструментам и данным. Я разрабатываю типизированные MCP-серверы, чтобы агенты в Cursor и Claude безопасно работали с оборудованием, документами и журналами ТО.',
-    mcpPoints: [
-      'MCP-сервер для Google Drive и Sheets: CRUD оборудования, журналы ТО, поиск файлов.',
-      'Инструменты с Zod-валидацией и описаниями на русском — понятный контракт для LLM.',
-      'stdio-транспорт через @modelcontextprotocol/sdk — работает в Cursor IDE и Claude Desktop.',
-      'Обёртка над Google Apps Script — без дублирования бизнес-логики.',
+    capabilitiesEyebrow: 'Что реализую',
+    capabilitiesTitle: 'Full-stack решения от идеи до production',
+    capabilitiesDescription:
+      'Объединяю веб-платформы, AI-интеграции, промышленные данные и автоматизацию в продукты, которые решают задачи бизнеса и производства.',
+    capabilitiesPoints: [
+      'MCP-серверы и AI-агенты: типизированные инструменты для Drive, Sheets, документов и данных предприятия.',
+      'Full-stack платформы: React/TypeScript, Node.js, Supabase/PostgreSQL, REST API, интеграции.',
+      'Промышленный IoT и мониторинг: Modbus TCP, дашборды, архивы временных рядов, Docker/VPS.',
+      'Мобильные интерфейсы: Telegram-боты, адаптивный UI, внутренние HR- и учётные системы.',
+      'Production-деплой: Railway/VPS, защита данных, поддерживаемая архитектура.',
     ],
-    telegramEyebrow: 'Employees · Telegram-бот',
-    telegramTitle: 'Telegram-бот для учёта сотрудников и СИЗ',
-    telegramDescription:
-      'Часть проекта Employees на Railway: мобильный чат-интерфейс к тому же Express/Prisma backend, что и веб-приложение.',
-    telegramPoints: [
-      'Поиск сотрудников и просмотр выданных СИЗ / инвентаря прямо в Telegram.',
-      'Проверка норм СИЗ и приближающихся сроков замены без браузера.',
-      'Работает через REST API Employees — единая база для веба и бота.',
-      'Контроль доступа к персональным данным; публичное демо без учётных данных недоступно.',
-    ],
+    growthEyebrow: 'Движение вперёд',
+    growthTitle: 'Постоянно учусь — последовательно достигаю',
+    growthText:
+      'Активно осваиваю новые технологии и подходы — от AI-инструментов до промышленных протоколов — и превращаю знания в решения с измеримым результатом. Ставлю амбициозные цели, беру ответственность за итог и уверенно двигаюсь к успеху шаг за шагом.',
     projectsEyebrow: 'Портфолио',
     projectsTitle: 'Проекты',
     projectsSubtitle:
@@ -392,7 +387,7 @@ function App() {
   const [direction, setDirection] = useState<SlideDirection>('forward')
   const [isAnimating, setIsAnimating] = useState(false)
   const t = content[language]
-  const cvHref = language === 'ru' ? '/cv/CV_RU.pdf' : '/cv/CV_EN.pdf'
+  const cvDownload = CV_DOWNLOADS[language]
 
   const stats = useMemo(
     () =>
@@ -471,7 +466,7 @@ function App() {
           aria-label="Portfolio home"
         >
           <span className="brand-mark">S</span>
-          <span>{PROFILE.name} / Full-stack</span>
+          <span>{language === 'ru' ? PROFILE.nameRu : PROFILE.nameEn} / Full-stack</span>
         </button>
         <nav aria-label="Primary navigation">
           {t.nav.map((item, index) => (
@@ -508,7 +503,11 @@ function App() {
                 <button className="button primary" type="button" onClick={() => goToSlide(2)}>
                   {t.primaryCta}
                 </button>
-                <a className="button secondary" href={cvHref}>
+                <a
+                  className="button secondary"
+                  href={cvDownload.href}
+                  download={cvDownload.filename}
+                >
                   {t.secondaryCta}
                 </a>
                 <a className="button ghost" href={PROFILE.githubUrl} target="_blank" rel="noreferrer">
@@ -538,12 +537,12 @@ function App() {
               <span>{language === 'ru' ? PROFILE.locationRu : PROFILE.locationEn}</span>
               <span>{language === 'ru' ? PROFILE.workFormatRu : PROFILE.workFormatEn}</span>
             </div>
-            <article className="mcp-panel reveal-item">
-              <p className="section-kicker">{t.mcpEyebrow}</p>
-              <h2>{t.mcpTitle}</h2>
-              <p className="mcp-description">{t.mcpDescription}</p>
+            <article className="mcp-panel about-capabilities reveal-item">
+              <p className="section-kicker">{t.capabilitiesEyebrow}</p>
+              <h2>{t.capabilitiesTitle}</h2>
+              <p className="mcp-description">{t.capabilitiesDescription}</p>
               <ul className="mcp-points">
-                {t.mcpPoints.map((point, index) => (
+                {t.capabilitiesPoints.map((point, index) => (
                   <li
                     key={point}
                     className="reveal-item"
@@ -554,21 +553,10 @@ function App() {
                 ))}
               </ul>
             </article>
-            <article className="mcp-panel telegram-panel reveal-item">
-              <p className="section-kicker">{t.telegramEyebrow}</p>
-              <h2>{t.telegramTitle}</h2>
-              <p className="mcp-description">{t.telegramDescription}</p>
-              <ul className="mcp-points">
-                {t.telegramPoints.map((point, index) => (
-                  <li
-                    key={point}
-                    className="reveal-item"
-                    style={{ '--reveal-index': index } as CSSProperties}
-                  >
-                    {point}
-                  </li>
-                ))}
-              </ul>
+            <article className="about-growth reveal-item">
+              <p className="section-kicker">{t.growthEyebrow}</p>
+              <h2>{t.growthTitle}</h2>
+              <p className="about-growth-text">{t.growthText}</p>
             </article>
           </div>
         </section>
@@ -666,10 +654,18 @@ function App() {
               <p className="section-kicker">{t.contactTitle}</p>
               <h2>{t.contactDescription}</h2>
               <div className="cv-actions">
-                <a className="button primary" href="/cv/CV_RU.pdf">
+                <a
+                  className="button primary"
+                  href={CV_DOWNLOADS.ru.href}
+                  download={CV_DOWNLOADS.ru.filename}
+                >
                   {t.cvRu}
                 </a>
-                <a className="button secondary" href="/cv/CV_EN.pdf">
+                <a
+                  className="button secondary"
+                  href={CV_DOWNLOADS.en.href}
+                  download={CV_DOWNLOADS.en.filename}
+                >
                   {t.cvEn}
                 </a>
               </div>

@@ -402,12 +402,36 @@
   font-size: 14px;
 }
 
-.telegram-panel {
-  border-color: rgba(91, 124, 250, 0.32);
+.about-capabilities {
+  border-color: rgba(41, 211, 198, 0.28);
   background:
-    radial-gradient(circle at top right, rgba(91, 124, 250, 0.14), transparent 42%),
-    radial-gradient(circle at bottom left, rgba(41, 211, 198, 0.1), transparent 38%),
+    radial-gradient(circle at top right, rgba(41, 211, 198, 0.12), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(91, 124, 250, 0.14), transparent 38%),
     var(--panel);
+}
+
+.about-growth {
+  padding: 18px 22px;
+  margin-top: 20px;
+  border: 1px solid rgba(91, 124, 250, 0.24);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at left center, rgba(91, 124, 250, 0.1), transparent 55%),
+    var(--panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.about-growth h2 {
+  margin: 0;
+  font-size: clamp(17px, 2vw, 24px);
+  line-height: 1.2;
+}
+
+.about-growth-text {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .mcp-panel {
@@ -541,22 +565,8 @@
   font-size: 13px;
 }
 
-@media (min-width: 900px) {
-  .about-layout {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 20px;
-    row-gap: 16px;
-  }
-
-  .about-layout > :not(.mcp-panel) {
-    grid-column: 1 / -1;
-  }
-
-  .about-layout > .mcp-panel {
-    margin-top: 0;
-    align-self: start;
-  }
+.slide-about .about-growth {
+  margin-top: 16px;
 }
 
 .project-layout {
@@ -1073,10 +1083,6 @@
   .about-layout {
     display: flex;
     flex-direction: column;
-  }
-
-  .about-layout > .mcp-panel {
-    margin-top: 20px;
   }
 
   .slide-controls {
