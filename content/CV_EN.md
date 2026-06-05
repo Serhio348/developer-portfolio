@@ -7,22 +7,41 @@ Brest, Belarus · serhiosidorovich@gmail.com · Telegram: @siarhei_brest348 · g
 
 ## Summary
 
-Full-stack developer with hands-on experience building production-ready web applications for business process automation. Specialized in React, TypeScript, Node.js, Supabase/PostgreSQL, Google API integrations, and AI assistants with tool calling. Built a complete equipment management platform with QR identification, maintenance logs, water monitoring, and an AI consultant that works with real operational data.
+Full-stack developer with hands-on experience building production-ready web applications for business process automation. I build **MCP servers (Model Context Protocol)** that connect AI agents to Google Drive, Google Sheets, and real production data through typed tools. Also specialized in React, TypeScript, Node.js, Supabase/PostgreSQL, and AI assistants with tool calling. Built an equipment management platform with QR identification, water monitoring, and an AI consultant for real operational workflows.
 
 ---
 
 ## Core Skills
 
+**MCP / AI agents:** Model Context Protocol, MCP SDK, stdio transport, Zod schemas, tool calling, prompt engineering  
 **Frontend:** React, TypeScript, Vite, CSS, Recharts, responsive UI  
 **Backend:** Node.js, Express, REST API, SSE, middleware  
 **Database:** Supabase, PostgreSQL, SQL migrations, RLS  
-**AI:** Claude API, Gemini API, DeepSeek, tool calling, prompt engineering  
+**AI:** Claude API, Gemini API, DeepSeek, multi-provider AI  
 **Integrations:** Google Drive API, Google Sheets, Google Apps Script, QR workflows  
-**Tools:** Git, GitHub, Railway, environment configuration
+**Tools:** Git, GitHub, Railway, Cursor IDE, environment configuration
 
 ---
 
 ## Experience / Projects
+
+### MCP Server for Google Drive and Google Sheets
+
+**Role:** Full-stack / AI integrations developer  
+**Stack:** TypeScript, Node.js, MCP SDK, Zod, Google Apps Script, Google Drive API
+
+An MCP server — a standardized bridge between AI agents (Claude, Cursor) and production business data. A wrapper over the existing GAS backend without duplicating business logic.
+
+- Built an MCP server with `@modelcontextprotocol/sdk` and stdio transport for Cursor and Claude Desktop integration.
+- Implemented equipment tools: list, create, update, and delete Google Sheets records with automatic Drive folder creation.
+- Added maintenance log tools: read, create, and update service records.
+- Implemented Drive tools: search files in equipment folders, read documents, upload files via Google APIs.
+- Defined each tool in Russian with Zod validation so agents get a clear contract and safe invocations.
+- Connected MCP to the AI consultant and the Cursor IDE development workflow.
+
+**Outcome:** AI agents work with real equipment data, documents, and maintenance logs through a single MCP interface instead of manual Drive and Sheets lookup.
+
+---
 
 ### QR Equipment Identification and Maintenance Platform
 
@@ -45,6 +64,7 @@ Full-stack web application for production operations: equipment identification, 
 
 ## Key Achievements
 
+- Built an MCP server connecting AI agents to Google Drive, Sheets, and production data.
 - Automated equipment identification and tracking through QR codes.
 - Centralized documentation, maintenance logs, and photos in one interface.
 - Introduced an AI consultant for file search, data analysis, and repair workflow support.

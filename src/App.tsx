@@ -36,6 +36,10 @@ type Content = {
   githubCta: string
   aboutTitle: string
   about: string
+  mcpEyebrow: string
+  mcpTitle: string
+  mcpDescription: string
+  mcpPoints: string[]
   projectEyebrow: string
   projectTitle: string
   projectDescription: string
@@ -64,18 +68,29 @@ const content: Record<Language, Content> = {
     badge: 'Full-stack Developer',
     title: 'Production-grade web apps with AI, automation, and real business value.',
     subtitle:
-      'I build full-stack systems with React, TypeScript, Node.js, Supabase, Google APIs, and AI tool-calling workflows.',
+      'I build MCP servers that connect AI agents to Google Drive, Sheets, and production data — plus full-stack apps on React, TypeScript, Node.js, and Supabase.',
     primaryCta: 'View project',
     secondaryCta: 'Download CV',
     githubCta: 'GitHub',
     aboutTitle: 'About',
     about:
-      'Full-stack developer with hands-on experience building production-ready web applications for business process automation. Specialized in React, TypeScript, Node.js, Supabase/PostgreSQL, Google API integrations, and AI assistants with tool calling. Built a complete equipment management platform with QR identification, maintenance logs, water monitoring, and an AI consultant for real operational data.',
+      'Full-stack developer focused on business automation, AI integrations, and production-ready web systems on React, TypeScript, Node.js, and Supabase/PostgreSQL.',
+    mcpEyebrow: 'MCP servers',
+    mcpTitle: 'Model Context Protocol — AI agents connected to real data',
+    mcpDescription:
+      'MCP (Model Context Protocol) is the open standard for connecting AI assistants to external tools and data. I build typed MCP servers so agents in Cursor and Claude can work with equipment, documents, and maintenance logs safely.',
+    mcpPoints: [
+      'MCP server for Google Drive & Sheets: equipment CRUD, maintenance logs, file search.',
+      'Tools with Zod validation and Russian descriptions — clear contracts for LLM agents.',
+      'stdio transport via @modelcontextprotocol/sdk — works in Cursor IDE and Claude Desktop.',
+      'Wrapper over Google Apps Script backend — no duplicated business logic.',
+    ],
     projectEyebrow: 'Featured project',
     projectTitle: 'QR Equipment Identification and Maintenance Platform',
     projectDescription:
       'A full-stack platform for equipment identification, maintenance tracking, water monitoring, document management, and AI-assisted diagnostics.',
     features: [
+      'MCP server: equipment, maintenance logs, Drive file search and upload tools.',
       'QR-based equipment cards with maintenance history and documentation links.',
       'React/TypeScript dashboards, archive views, forms, charts, and mobile-friendly UI.',
       'Node.js/Express AI consultant with streaming responses and tool calling.',
@@ -85,9 +100,12 @@ const content: Record<Language, Content> = {
     ],
     stackTitle: 'Tech stack',
     stack: [
+      'MCP',
+      'Model Context Protocol',
+      'MCP SDK',
+      'Zod',
       'React',
       'TypeScript',
-      'Vite',
       'Node.js',
       'Express',
       'Supabase',
@@ -99,6 +117,7 @@ const content: Record<Language, Content> = {
       'DeepSeek',
       'SSE',
       'Railway',
+      'Cursor IDE',
     ],
     demoTitle: 'Demo access',
     demoDescription: 'Live production deployment on Railway with the main equipment management platform.',
@@ -127,18 +146,29 @@ const content: Record<Language, Content> = {
     badge: 'Full-stack разработчик',
     title: 'Production-ready веб-приложения с AI, автоматизацией и бизнес-ценностью.',
     subtitle:
-      'Создаю full-stack системы на React, TypeScript, Node.js, Supabase, Google APIs и AI tool-calling workflows.',
+      'Разрабатываю MCP-серверы для подключения AI-агентов к Google Drive, Sheets и производственным данным — и full-stack приложения на React, TypeScript, Node.js, Supabase.',
     primaryCta: 'Смотреть проект',
     secondaryCta: 'Скачать CV',
     githubCta: 'GitHub',
     aboutTitle: 'Обо мне',
     about:
-      'Full-stack разработчик с практическим опытом создания production-ready веб-приложений для автоматизации бизнес-процессов. Специализируюсь на React, TypeScript, Node.js, Supabase/PostgreSQL, интеграциях с Google APIs и AI-ассистентах с tool calling. Разработал полноценную платформу учёта оборудования с QR-идентификацией, журналами обслуживания, мониторингом воды и AI-консультантом для работы с реальными производственными данными.',
+      'Full-stack разработчик в автоматизации бизнес-процессов, AI-интеграциях и production-ready системах на React, TypeScript, Node.js и Supabase/PostgreSQL.',
+    mcpEyebrow: 'MCP-серверы',
+    mcpTitle: 'Model Context Protocol — AI-агенты на реальных данных',
+    mcpDescription:
+      'MCP (Model Context Protocol) — открытый стандарт подключения AI-ассистентов к внешним инструментам и данным. Я разрабатываю типизированные MCP-серверы, чтобы агенты в Cursor и Claude безопасно работали с оборудованием, документами и журналами ТО.',
+    mcpPoints: [
+      'MCP-сервер для Google Drive и Sheets: CRUD оборудования, журналы ТО, поиск файлов.',
+      'Инструменты с Zod-валидацией и описаниями на русском — понятный контракт для LLM.',
+      'stdio-транспорт через @modelcontextprotocol/sdk — работает в Cursor IDE и Claude Desktop.',
+      'Обёртка над Google Apps Script — без дублирования бизнес-логики.',
+    ],
     projectEyebrow: 'Главный проект',
     projectTitle: 'Платформа QR-идентификации и обслуживания оборудования',
     projectDescription:
       'Full-stack платформа для идентификации оборудования, журналов обслуживания, мониторинга воды, управления документацией и AI-диагностики.',
     features: [
+      'MCP-сервер: оборудование, журналы ТО, поиск и загрузка файлов в Drive.',
       'QR-карточки оборудования с историей обслуживания и ссылками на документацию.',
       'Дашборды, архивы, формы, графики и мобильный UI на React/TypeScript.',
       'AI-консультант на Node.js/Express со streaming-ответами и tool calling.',
@@ -148,9 +178,12 @@ const content: Record<Language, Content> = {
     ],
     stackTitle: 'Технологии',
     stack: [
+      'MCP',
+      'Model Context Protocol',
+      'MCP SDK',
+      'Zod',
       'React',
       'TypeScript',
-      'Vite',
       'Node.js',
       'Express',
       'Supabase',
@@ -162,6 +195,7 @@ const content: Record<Language, Content> = {
       'DeepSeek',
       'SSE',
       'Railway',
+      'Cursor IDE',
     ],
     demoTitle: 'Демо-доступ',
     demoDescription: 'Рабочий production-деплой на Railway с основной платформой учёта оборудования.',
@@ -225,12 +259,19 @@ function App() {
   const cvHref = language === 'ru' ? '/cv/CV_RU.pdf' : '/cv/CV_EN.pdf'
 
   const stats = useMemo(
-    () => [
-      ['React + Node.js', 'Full-stack'],
-      ['Supabase + Google APIs', 'Integrations'],
-      ['Claude + Gemini + DeepSeek', 'AI tools'],
-    ],
-    [],
+    () =>
+      language === 'ru'
+        ? [
+            ['MCP-серверы', 'AI-интеграции'],
+            ['React + Node.js', 'Full-stack'],
+            ['Claude + Gemini + DeepSeek', 'AI-агенты'],
+          ]
+        : [
+            ['MCP Servers', 'AI integrations'],
+            ['React + Node.js', 'Full-stack'],
+            ['Claude + Gemini + DeepSeek', 'AI agents'],
+          ],
+    [language],
   )
 
   const goToSlide = useCallback((index: number) => {
@@ -356,11 +397,27 @@ function App() {
         >
           <div className="slide-content about-layout">
             <p className="section-kicker reveal-item">{t.aboutTitle}</p>
-            <h2 className="reveal-item">{t.about}</h2>
+            <h2 className="reveal-item about-summary">{t.about}</h2>
             <div className="about-meta reveal-item">
               <span>{language === 'ru' ? PROFILE.locationRu : PROFILE.locationEn}</span>
               <span>{language === 'ru' ? PROFILE.workFormatRu : PROFILE.workFormatEn}</span>
             </div>
+            <article className="mcp-panel reveal-item">
+              <p className="section-kicker">{t.mcpEyebrow}</p>
+              <h2>{t.mcpTitle}</h2>
+              <p className="mcp-description">{t.mcpDescription}</p>
+              <ul className="mcp-points">
+                {t.mcpPoints.map((point, index) => (
+                  <li
+                    key={point}
+                    className="reveal-item"
+                    style={{ '--reveal-index': index } as CSSProperties}
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
         </section>
 
@@ -403,7 +460,7 @@ function App() {
         >
           <div className="slide-content stack-layout">
             <p className="section-kicker reveal-item">{t.stackTitle}</p>
-            <h2 className="reveal-item">React · TypeScript · Node.js · Supabase · AI</h2>
+            <h2 className="reveal-item">MCP · React · TypeScript · Node.js · Supabase · AI</h2>
             <div className="stack-list">
               {t.stack.map((technology, index) => (
                 <span

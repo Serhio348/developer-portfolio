@@ -7,22 +7,41 @@
 
 ## Кратко о себе
 
-Full-stack разработчик с практическим опытом создания production-ready веб-приложений для автоматизации бизнес-процессов. Специализируюсь на React, TypeScript, Node.js, Supabase/PostgreSQL, интеграциях с Google APIs и AI-ассистентах с tool calling. Разработал полноценную платформу учёта оборудования с QR-идентификацией, журналами обслуживания, мониторингом воды и AI-консультантом для работы с реальными производственными данными.
+Full-stack разработчик с практическим опытом создания production-ready веб-приложений для автоматизации бизнес-процессов. Разрабатываю **MCP-серверы (Model Context Protocol)** — подключаю AI-агентов к Google Drive, Google Sheets и производственным данным через типизированные инструменты. Также специализируюсь на React, TypeScript, Node.js, Supabase/PostgreSQL и AI-ассистентах с tool calling. Создал платформу учёта оборудования с QR-идентификацией, мониторингом воды и AI-консультантом для реальных производственных процессов.
 
 ---
 
 ## Ключевые навыки
 
+**MCP / AI-агенты:** Model Context Protocol, MCP SDK, stdio transport, Zod-схемы, tool calling, prompt engineering  
 **Frontend:** React, TypeScript, Vite, CSS, Recharts, адаптивная вёрстка  
 **Backend:** Node.js, Express, REST API, SSE, middleware  
 **База данных:** Supabase, PostgreSQL, SQL-миграции, RLS  
-**AI:** Claude API, Gemini API, DeepSeek, tool calling, prompt engineering  
+**AI:** Claude API, Gemini API, DeepSeek, multi-provider AI  
 **Интеграции:** Google Drive API, Google Sheets, Google Apps Script, QR-воркфлоу  
-**Инструменты:** Git, GitHub, Railway, environment configuration
+**Инструменты:** Git, GitHub, Railway, Cursor IDE, environment configuration
 
 ---
 
 ## Опыт / Проекты
+
+### MCP-сервер для Google Drive и Google Sheets
+
+**Роль:** Full-stack / AI integrations разработчик  
+**Стек:** TypeScript, Node.js, MCP SDK, Zod, Google Apps Script, Google Drive API
+
+MCP-сервер — стандартизированный мост между AI-агентами (Claude, Cursor) и бизнес-данными производства. Обёртка над существующим GAS-бэкендом, без дублирования логики.
+
+- Разработал MCP-сервер на `@modelcontextprotocol/sdk` с stdio-транспортом для интеграции с Cursor и Claude Desktop.
+- Реализовал инструменты для оборудования: получение списка, создание, обновление, удаление записей в Google Sheets с автосозданием папок в Drive.
+- Добавил инструменты для журналов ТО: чтение, создание и обновление записей обслуживания.
+- Реализовал Drive-инструменты: поиск файлов в папках оборудования, чтение документов, загрузка файлов через Google APIs.
+- Описал каждый tool на русском с Zod-валидацией — агент получает понятный контракт и безопасные вызовы.
+- Подключил MCP к AI-консультанту и рабочему процессу разработки в Cursor IDE.
+
+**Результат:** AI-агент работает с реальными данными оборудования, документами и журналами ТО через единый MCP-интерфейс вместо ручного поиска в Drive и Sheets.
+
+---
 
 ### Платформа QR-идентификации и обслуживания оборудования
 
@@ -45,6 +64,7 @@ Full-stack веб-приложение для производства: иден
 
 ## Достижения
 
+- Разработал MCP-сервер для подключения AI-агентов к Google Drive, Sheets и производственным данным.
 - Автоматизировал идентификацию и учёт оборудования через QR-коды.
 - Централизовал документацию, журналы обслуживания и фото в одном интерфейсе.
 - Внедрил AI-консультанта для поиска файлов, анализа данных и поддержки ремонтных сценариев.
