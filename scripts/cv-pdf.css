@@ -33,6 +33,26 @@ body {
   box-shadow: 0 8px 20px rgba(9, 13, 24, 0.09);
 }
 
+.cv-header--photo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cv-photo {
+  width: 22mm;
+  height: 28mm;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid rgba(94, 234, 212, 0.35);
+  border-radius: 12px;
+}
+
+.cv-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
 .cv-eyebrow {
   display: inline-block;
   margin: 0 0 8px;

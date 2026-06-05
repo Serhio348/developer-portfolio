@@ -1,7 +1,10 @@
-<div class="cv-header">
-  <p class="cv-eyebrow">Full-stack разработчик</p>
-  <h1 class="cv-name">Сидорович Сергей Юрьевич</h1>
-  <p class="cv-lead">Production-ready веб-приложения для автоматизации производства: MCP-серверы, AI-интеграции, React/TypeScript/Node.js, Supabase/PostgreSQL.</p>
+<div class="cv-header cv-header--photo">
+  <img class="cv-photo" src="../public/cv/photo.jpg" alt="Сидорович Сергей Юрьевич" />
+  <div class="cv-header-text">
+    <p class="cv-eyebrow">Full-stack разработчик</p>
+    <h1 class="cv-name">Сидорович Сергей Юрьевич</h1>
+    <p class="cv-lead">Production-ready веб-приложения для автоматизации производства: MCP-серверы, AI-интеграции, React/TypeScript/Node.js, Supabase/PostgreSQL.</p>
+  </div>
 </div>
 
 <div class="cv-contacts">
