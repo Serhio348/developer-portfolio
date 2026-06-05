@@ -402,6 +402,14 @@
   font-size: 14px;
 }
 
+.telegram-panel {
+  border-color: rgba(91, 124, 250, 0.32);
+  background:
+    radial-gradient(circle at top right, rgba(91, 124, 250, 0.14), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(41, 211, 198, 0.1), transparent 38%),
+    var(--panel);
+}
+
 .mcp-panel {
   padding: 22px 24px;
   margin-top: 24px;
@@ -456,6 +464,11 @@
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
+.about-layout {
+  display: flex;
+  flex-direction: column;
+}
+
 .about-layout h2,
 .about-summary {
   max-width: 900px;
@@ -487,6 +500,65 @@
   font-size: 14px;
 }
 
+.slide-about {
+  align-items: flex-start;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+.slide-about .slide-content {
+  margin-inline: auto;
+}
+
+.slide-about .about-meta {
+  margin-top: 20px;
+}
+
+.slide-about .mcp-panel {
+  padding: 18px 20px;
+  margin-top: 20px;
+}
+
+.slide-about .mcp-panel h2 {
+  font-size: clamp(18px, 2.2vw, 28px);
+}
+
+.slide-about .mcp-description {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.slide-about .mcp-points {
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.slide-about .mcp-points li {
+  font-size: 13px;
+}
+
+@media (min-width: 900px) {
+  .about-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 16px;
+  }
+
+  .about-layout > :not(.mcp-panel) {
+    grid-column: 1 / -1;
+  }
+
+  .about-layout > .mcp-panel {
+    margin-top: 0;
+    align-self: start;
+  }
+}
+
 .project-layout {
   display: grid;
   gap: 22px;
@@ -507,6 +579,101 @@
   margin: 14px 0 0;
   font-size: 16px;
   line-height: 1.6;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.project-card.is-featured {
+  border-color: rgba(91, 124, 250, 0.35);
+  background:
+    radial-gradient(circle at top right, rgba(91, 124, 250, 0.12), transparent 42%),
+    var(--panel);
+}
+
+.project-card h3 {
+  margin: 0;
+  color: var(--text-strong);
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.15;
+}
+
+.project-card-description {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.project-card-highlights {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card-highlights li {
+  position: relative;
+  padding-left: 14px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.project-card-highlights li::before {
+  content: '';
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.project-card-tags span {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-strong);
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.project-card-note {
+  margin: 12px 0 0;
+  color: var(--accent-2);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .project-grid {
@@ -857,6 +1024,7 @@
   }
 
   .hero-layout,
+  .projects-grid,
   .project-grid,
   .contact-layout {
     grid-template-columns: 1fr;
@@ -872,8 +1040,22 @@
 
   .slide {
     align-items: flex-start;
+    justify-content: flex-start;
     padding-top: 12px;
     overflow-y: auto;
+  }
+
+  .slide-about {
+    justify-content: center;
+  }
+
+  .about-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-layout > .mcp-panel {
+    margin-top: 20px;
   }
 
   .slide-controls {

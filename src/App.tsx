@@ -7,6 +7,82 @@ type SlideDirection = 'forward' | 'backward'
 const SLIDE_COUNT = 5
 const SLIDE_TRANSITION_MS = 920
 
+type ProjectItem = {
+  id: string
+  featured?: boolean
+  eyebrow: Record<Language, string>
+  title: Record<Language, string>
+  description: Record<Language, string>
+  highlights: Record<Language, string[]>
+  tags: string[]
+  repoUrl: string
+  demoUrl?: string
+  demoNote?: Record<Language, string>
+}
+
+const PROJECTS: ProjectItem[] = [
+  {
+    id: 'qr-platform',
+    featured: true,
+    eyebrow: { ru: 'Главный проект', en: 'Featured project' },
+    title: {
+      ru: 'Платформа QR-идентификации и обслуживания оборудования',
+      en: 'QR Equipment Identification and Maintenance Platform',
+    },
+    description: {
+      ru: 'Full-stack платформа для идентификации оборудования, журналов ТО, мониторинга воды, документооборота и AI-диагностики.',
+      en: 'Full-stack platform for equipment identification, maintenance tracking, water monitoring, document management, and AI-assisted diagnostics.',
+    },
+    highlights: {
+      ru: [
+        'MCP-сервер и веб AI-консультант с tool calling.',
+        'QR-карточки, дашборды, архивы и мобильный UI.',
+        'Supabase/PostgreSQL, Google Drive и Sheets.',
+        'Аналитика воды с корректировкой замены счётчиков.',
+      ],
+      en: [
+        'MCP server and web AI consultant with tool calling.',
+        'QR cards, dashboards, archives, and mobile-friendly UI.',
+        'Supabase/PostgreSQL, Google Drive and Sheets.',
+        'Water analytics with meter replacement correction.',
+      ],
+    },
+    tags: ['React', 'TypeScript', 'Node.js', 'Supabase', 'MCP', 'Railway'],
+    repoUrl: 'https://github.com/Serhio348/QR-code-for-equipment-identification',
+    demoUrl: 'https://qr-code-for-equipment-identification-production.up.railway.app',
+  },
+  {
+    id: 'employees',
+    eyebrow: { ru: 'HR / СИЗ', en: 'HR / PPE' },
+    title: { ru: 'Employees', en: 'Employees' },
+    description: {
+      ru: 'Система учёта сотрудников и СИЗ с веб-приложением и Telegram-ботом: инвентарь, нормы, сроки замены и экспорт личных карточек.',
+      en: 'Employee and PPE tracking with a web app and Telegram bot: inventory, norms, replacement deadlines, and personal card export.',
+    },
+    highlights: {
+      ru: [
+        'Telegram-бот: сотрудники, выданные СИЗ и сроки замены в чате.',
+        'Реестр сотрудников с профессиями и размерами экипировки.',
+        'Учёт выдачи СИЗ: выдан / возвращён / списан.',
+        'Экспорт личных карточек в PDF и Excel.',
+      ],
+      en: [
+        'Telegram bot: employees, issued PPE, and replacement deadlines in chat.',
+        'Employee registry with professions and equipment sizes.',
+        'PPE issuance tracking: issued / returned / written off.',
+        'Personal card export to PDF and Excel.',
+      ],
+    },
+    tags: ['React', 'TypeScript', 'Telegram', 'Ant Design', 'Prisma', 'PostgreSQL', 'JWT'],
+    repoUrl: 'https://github.com/Serhio348/Employees',
+    demoUrl: 'https://employees-production-c5df.up.railway.app',
+    demoNote: {
+      ru: 'Демо по запросу — защита персональных данных',
+      en: 'Demo on request — personal data protected',
+    },
+  },
+]
+
 const PROFILE = {
   name: 'Siarhei Sidarovich',
   locationRu: 'Брест, Беларусь',
@@ -15,8 +91,8 @@ const PROFILE = {
   telegram: 'https://t.me/siarhei_brest348',
   telegramHandle: '@siarhei_brest348',
   githubUrl: 'https://github.com/Serhio348',
-  projectRepoUrl: 'https://github.com/Serhio348/QR-code-for-equipment-identification',
   liveDemoUrl: 'https://qr-code-for-equipment-identification-production.up.railway.app',
+  employeesDemoUrl: 'https://employees-production-c5df.up.railway.app',
   educationRu: 'Высшее образование, автоматизация промышленных установок, 2009',
   educationEn: 'Higher education in industrial automation, 2009',
   languagesRu: 'Русский — родной, английский — B1, итальянский — B2',
@@ -40,10 +116,13 @@ type Content = {
   mcpTitle: string
   mcpDescription: string
   mcpPoints: string[]
-  projectEyebrow: string
-  projectTitle: string
-  projectDescription: string
-  features: string[]
+  telegramEyebrow: string
+  telegramTitle: string
+  telegramDescription: string
+  telegramPoints: string[]
+  projectsEyebrow: string
+  projectsTitle: string
+  projectsSubtitle: string
   stackTitle: string
   stack: string[]
   demoTitle: string
@@ -63,13 +142,13 @@ type Content = {
 
 const content: Record<Language, Content> = {
   en: {
-    nav: ['Home', 'About', 'Project', 'Stack', 'Contact'],
+    nav: ['Home', 'About', 'Projects', 'Stack', 'Contact'],
     languageLabel: 'RU',
     badge: 'Full-stack Developer',
     title: 'Production-grade web apps with AI, automation, and real business value.',
     subtitle:
       'I build MCP servers that connect AI agents to Google Drive, Sheets, and production data — plus full-stack apps on React, TypeScript, Node.js, and Supabase.',
-    primaryCta: 'View project',
+    primaryCta: 'View projects',
     secondaryCta: 'Download CV',
     githubCta: 'GitHub',
     aboutTitle: 'About',
@@ -85,19 +164,19 @@ const content: Record<Language, Content> = {
       'stdio transport via @modelcontextprotocol/sdk — works in Cursor IDE and Claude Desktop.',
       'Wrapper over Google Apps Script backend — no duplicated business logic.',
     ],
-    projectEyebrow: 'Featured project',
-    projectTitle: 'QR Equipment Identification and Maintenance Platform',
-    projectDescription:
-      'A full-stack platform for equipment identification, maintenance tracking, water monitoring, document management, and AI-assisted diagnostics.',
-    features: [
-      'MCP server: equipment, maintenance logs, Drive file search and upload tools.',
-      'QR-based equipment cards with maintenance history and documentation links.',
-      'React/TypeScript dashboards, archive views, forms, charts, and mobile-friendly UI.',
-      'Node.js/Express AI consultant with streaming responses and tool calling.',
-      'Google Drive and Sheets integrations via Google Apps Script.',
-      'Supabase/PostgreSQL schema, RLS policies, SQL migrations, and data workflows.',
-      'Water consumption analytics with meter replacement correction logic.',
+    telegramEyebrow: 'Employees · Telegram bot',
+    telegramTitle: 'Telegram bot for employee and PPE tracking',
+    telegramDescription:
+      'Part of the Employees project on Railway: a mobile chat interface to the same Express/Prisma backend as the web app.',
+    telegramPoints: [
+      'Search employees and view issued PPE / inventory directly in Telegram.',
+      'Check SIZ norms and upcoming replacement deadlines without opening the browser.',
+      'Uses the Employees REST API — one data source for web and bot.',
+      'Access control for personal data; public demo without credentials is not available.',
     ],
+    projectsEyebrow: 'Portfolio',
+    projectsTitle: 'Projects',
+    projectsSubtitle: 'Production-ready full-stack applications for manufacturing, HR, and AI integrations.',
     stackTitle: 'Tech stack',
     stack: [
       'MCP',
@@ -106,23 +185,31 @@ const content: Record<Language, Content> = {
       'Zod',
       'React',
       'TypeScript',
+      'Ant Design',
+      'Redux Toolkit',
+      'Prisma',
       'Node.js',
       'Express',
       'Supabase',
       'PostgreSQL',
+      'JWT',
       'Google Drive API',
       'Google Sheets',
       'Claude API',
       'Gemini API',
       'DeepSeek',
+      'Telegram Bot API',
+      'grammy',
       'SSE',
       'Railway',
       'Cursor IDE',
     ],
     demoTitle: 'Demo access',
-    demoDescription: 'Live production deployment on Railway with the main equipment management platform.',
+    demoDescription: 'Live production deployments on Railway.',
     demoItems: [
-      ['Live demo', PROFILE.liveDemoUrl],
+      ['QR platform', PROFILE.liveDemoUrl],
+      ['Employees', PROFILE.employeesDemoUrl],
+      ['Employees demo', 'On request — personal data protected'],
       ['Location', PROFILE.locationEn],
       ['Education', PROFILE.educationEn],
       ['Languages', PROFILE.languagesEn],
@@ -141,13 +228,13 @@ const content: Record<Language, Content> = {
     nextSlide: 'Next',
   },
   ru: {
-    nav: ['Главная', 'Обо мне', 'Проект', 'Стек', 'Контакты'],
+    nav: ['Главная', 'Обо мне', 'Проекты', 'Стек', 'Контакты'],
     languageLabel: 'EN',
     badge: 'Full-stack разработчик',
     title: 'Production-ready веб-приложения с AI, автоматизацией и бизнес-ценностью.',
     subtitle:
       'Разрабатываю MCP-серверы для подключения AI-агентов к Google Drive, Sheets и производственным данным — и full-stack приложения на React, TypeScript, Node.js, Supabase.',
-    primaryCta: 'Смотреть проект',
+    primaryCta: 'Смотреть проекты',
     secondaryCta: 'Скачать CV',
     githubCta: 'GitHub',
     aboutTitle: 'Обо мне',
@@ -163,19 +250,19 @@ const content: Record<Language, Content> = {
       'stdio-транспорт через @modelcontextprotocol/sdk — работает в Cursor IDE и Claude Desktop.',
       'Обёртка над Google Apps Script — без дублирования бизнес-логики.',
     ],
-    projectEyebrow: 'Главный проект',
-    projectTitle: 'Платформа QR-идентификации и обслуживания оборудования',
-    projectDescription:
-      'Full-stack платформа для идентификации оборудования, журналов обслуживания, мониторинга воды, управления документацией и AI-диагностики.',
-    features: [
-      'MCP-сервер: оборудование, журналы ТО, поиск и загрузка файлов в Drive.',
-      'QR-карточки оборудования с историей обслуживания и ссылками на документацию.',
-      'Дашборды, архивы, формы, графики и мобильный UI на React/TypeScript.',
-      'AI-консультант на Node.js/Express со streaming-ответами и tool calling.',
-      'Интеграции Google Drive и Google Sheets через Google Apps Script.',
-      'Supabase/PostgreSQL, RLS-политики, SQL-миграции и обработка данных.',
-      'Аналитика расхода воды с корректировкой заменённых счётчиков.',
+    telegramEyebrow: 'Employees · Telegram-бот',
+    telegramTitle: 'Telegram-бот для учёта сотрудников и СИЗ',
+    telegramDescription:
+      'Часть проекта Employees на Railway: мобильный чат-интерфейс к тому же Express/Prisma backend, что и веб-приложение.',
+    telegramPoints: [
+      'Поиск сотрудников и просмотр выданных СИЗ / инвентаря прямо в Telegram.',
+      'Проверка норм СИЗ и приближающихся сроков замены без браузера.',
+      'Работает через REST API Employees — единая база для веба и бота.',
+      'Контроль доступа к персональным данным; публичное демо без учётных данных недоступно.',
     ],
+    projectsEyebrow: 'Портфолио',
+    projectsTitle: 'Проекты',
+    projectsSubtitle: 'Production-ready full-stack приложения для производства, HR и AI-интеграций.',
     stackTitle: 'Технологии',
     stack: [
       'MCP',
@@ -184,23 +271,31 @@ const content: Record<Language, Content> = {
       'Zod',
       'React',
       'TypeScript',
+      'Ant Design',
+      'Redux Toolkit',
+      'Prisma',
       'Node.js',
       'Express',
       'Supabase',
       'PostgreSQL',
+      'JWT',
       'Google Drive API',
       'Google Sheets',
       'Claude API',
       'Gemini API',
       'DeepSeek',
+      'Telegram Bot API',
+      'grammy',
       'SSE',
       'Railway',
       'Cursor IDE',
     ],
     demoTitle: 'Демо-доступ',
-    demoDescription: 'Рабочий production-деплой на Railway с основной платформой учёта оборудования.',
+    demoDescription: 'Рабочие production-деплои на Railway.',
     demoItems: [
-      ['Live demo', PROFILE.liveDemoUrl],
+      ['QR-платформа', PROFILE.liveDemoUrl],
+      ['Employees', PROFILE.employeesDemoUrl],
+      ['Employees demo', 'По запросу — защита персональных данных'],
       ['Локация', PROFILE.locationRu],
       ['Образование', PROFILE.educationRu],
       ['Языки', PROFILE.languagesRu],
@@ -418,6 +513,22 @@ function App() {
                 ))}
               </ul>
             </article>
+            <article className="mcp-panel telegram-panel reveal-item">
+              <p className="section-kicker">{t.telegramEyebrow}</p>
+              <h2>{t.telegramTitle}</h2>
+              <p className="mcp-description">{t.telegramDescription}</p>
+              <ul className="mcp-points">
+                {t.telegramPoints.map((point, index) => (
+                  <li
+                    key={point}
+                    className="reveal-item"
+                    style={{ '--reveal-index': index } as CSSProperties}
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
         </section>
 
@@ -427,29 +538,45 @@ function App() {
         >
           <div className="slide-content project-layout">
             <div className="section-heading reveal-item">
-              <p className="section-kicker">{t.projectEyebrow}</p>
-              <h2>{t.projectTitle}</h2>
-              <p>{t.projectDescription}</p>
+              <p className="section-kicker">{t.projectsEyebrow}</p>
+              <h2>{t.projectsTitle}</h2>
+              <p>{t.projectsSubtitle}</p>
             </div>
-            <div className="project-grid">
-              {t.features.map((feature, index) => (
+            <div className="projects-grid">
+              {PROJECTS.map((project, index) => (
                 <article
-                  className="feature-card reveal-item"
-                  key={feature}
+                  key={project.id}
+                  className={`project-card reveal-item${project.featured ? ' is-featured' : ''}`}
                   style={{ '--reveal-index': index } as CSSProperties}
                 >
-                  <span className="feature-dot" />
-                  <p>{feature}</p>
+                  <p className="section-kicker">{project.eyebrow[language]}</p>
+                  <h3>{project.title[language]}</h3>
+                  <p className="project-card-description">{project.description[language]}</p>
+                  <ul className="project-card-highlights">
+                    {project.highlights[language].map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                  <div className="project-card-tags">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className="project-card-links">
+                    <a className="button secondary" href={project.repoUrl} target="_blank" rel="noreferrer">
+                      {t.projectRepoCta}
+                    </a>
+                    {project.demoUrl ? (
+                      <a className="button ghost" href={project.demoUrl} target="_blank" rel="noreferrer">
+                        {t.liveDemoCta}
+                      </a>
+                    ) : null}
+                  </div>
+                  {project.demoNote ? (
+                    <p className="project-card-note">{project.demoNote[language]}</p>
+                  ) : null}
                 </article>
               ))}
-            </div>
-            <div className="project-links reveal-item">
-              <a className="button secondary" href={PROFILE.projectRepoUrl} target="_blank" rel="noreferrer">
-                {t.projectRepoCta}
-              </a>
-              <a className="button ghost" href={PROFILE.liveDemoUrl} target="_blank" rel="noreferrer">
-                {t.liveDemoCta}
-              </a>
             </div>
           </div>
         </section>
@@ -460,7 +587,7 @@ function App() {
         >
           <div className="slide-content stack-layout">
             <p className="section-kicker reveal-item">{t.stackTitle}</p>
-            <h2 className="reveal-item">MCP · React · TypeScript · Node.js · Supabase · AI</h2>
+            <h2 className="reveal-item">MCP · Telegram · React · TypeScript · Node.js · AI</h2>
             <div className="stack-list">
               {t.stack.map((technology, index) => (
                 <span

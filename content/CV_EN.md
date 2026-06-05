@@ -14,11 +14,11 @@ Full-stack developer with hands-on experience building production-ready web appl
 ## Core Skills
 
 **MCP / AI agents:** Model Context Protocol, MCP SDK, stdio transport, Zod schemas, tool calling, prompt engineering  
-**Frontend:** React, TypeScript, Vite, CSS, Recharts, responsive UI  
+**Frontend:** React, TypeScript, Vite, Ant Design, Redux Toolkit, CSS, Recharts, responsive UI  
 **Backend:** Node.js, Express, REST API, SSE, middleware  
-**Database:** Supabase, PostgreSQL, SQL migrations, RLS  
+**Database:** Supabase, PostgreSQL, Prisma, SQL migrations, RLS  
 **AI:** Claude API, Gemini API, DeepSeek, multi-provider AI  
-**Integrations:** Google Drive API, Google Sheets, Google Apps Script, QR workflows  
+**Integrations:** Google Drive API, Google Sheets, Google Apps Script, Telegram Bot API, QR workflows  
 **Tools:** Git, GitHub, Railway, Cursor IDE, environment configuration
 
 ---
@@ -60,6 +60,29 @@ Full-stack web application for production operations: equipment identification, 
 
 **Outcome:** a single digital system replacing scattered spreadsheets, folders, and manual equipment lookup.
 
+**Live demo:** https://qr-code-for-equipment-identification-production.up.railway.app
+
+---
+
+### Employees — employee and PPE tracking
+
+**Role:** Full-stack Developer  
+**Stack:** React, TypeScript, Ant Design, Redux Toolkit, Express, Prisma, PostgreSQL, JWT, Railway
+
+Internal HR system for employee and PPE management: web app, Telegram bot, issuance tracking, replacement deadlines, and personal card export.
+
+- Built a Telegram bot as part of Employees: employee lookup, issued PPE, and replacement deadlines in chat via the Express/Prisma API.
+- Built an employee registry with names, professions, addresses, clothing/shoe sizes, and employee numbers.
+- Implemented PPE and inventory tracking with issued / returned / written-off statuses and replacement deadlines.
+- Added a PPE norms directory with classification, quantity, and issuance period.
+- Implemented personal PPE card export to PDF and Excel (xlsx).
+- Configured JWT authentication, Prisma/PostgreSQL, and Railway production deployment.
+
+**Outcome:** digital PPE issuance tracking instead of paper cards and scattered spreadsheets.
+
+**GitHub:** https://github.com/Serhio348/Employees  
+**Production:** https://employees-production-c5df.up.railway.app (demo on request — personal data)
+
 ---
 
 ## Key Achievements
@@ -70,6 +93,7 @@ Full-stack web application for production operations: equipment identification, 
 - Introduced an AI consultant for file search, data analysis, and repair workflow support.
 - Implemented water consumption analytics with proper handling of meter replacement anomalies.
 - Prepared deployment architecture for Railway with separated frontend and backend services.
+- Built the Employees system with a Telegram bot for employee and PPE tracking and PDF/Excel card export.
 
 ---
 
@@ -84,4 +108,5 @@ Higher education in industrial automation, 2009
 **Languages:** Russian — native, English — B1, Italian — B2  
 **Work format:** onsite / remote / hybrid  
 **GitHub:** https://github.com/Serhio348  
-**Live demo:** https://qr-code-for-equipment-identification-production.up.railway.app
+**QR platform demo:** https://qr-code-for-equipment-identification-production.up.railway.app  
+**Employees:** https://employees-production-c5df.up.railway.app (demo on request)
