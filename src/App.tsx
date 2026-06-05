@@ -51,6 +51,10 @@ const PROJECTS: ProjectItem[] = [
     tags: ['React', 'TypeScript', 'Node.js', 'Supabase', 'MCP', 'Railway'],
     repoUrl: 'https://github.com/Serhio348/QR-code-for-equipment-identification',
     demoUrl: 'https://qr-code-for-equipment-identification-production.up.railway.app',
+    demoNote: {
+      ru: 'Тестовый доступ: логин и пароль по запросу на serhiosidorovich@gmail.com',
+      en: 'Demo access: login credentials on request at serhiosidorovich@gmail.com',
+    },
   },
   {
     id: 'employees',
@@ -244,6 +248,7 @@ const content: Record<Language, Content> = {
     demoDescription: 'Live demos and production deployments.',
     demoItems: [
       ['QR platform', PROFILE.liveDemoUrl],
+      ['QR demo login', `Credentials on request: ${PROFILE.email}`],
       ['Employees', PROFILE.employeesDemoUrl],
       ['Employees demo', 'On request — personal data protected'],
       ['Osmos Modbus', 'On request — internal industrial network'],
@@ -332,6 +337,7 @@ const content: Record<Language, Content> = {
     demoDescription: 'Демо и production-деплои.',
     demoItems: [
       ['QR-платформа', PROFILE.liveDemoUrl],
+      ['QR-платформа — доступ', `Логин и пароль по запросу: ${PROFILE.email}`],
       ['Employees', PROFILE.employeesDemoUrl],
       ['Employees demo', 'По запросу — защита персональных данных'],
       ['Osmos Modbus', 'По запросу — внутренняя промышленная сеть'],
@@ -361,6 +367,19 @@ function DemoValue({ value }: { value: string }) {
       <a href={value} target="_blank" rel="noreferrer">
         {value.replace('https://', '')}
       </a>
+    )
+  }
+
+  const emailMatch = value.match(/[\w.+-]+@[\w.-]+\.\w+/)
+  if (emailMatch) {
+    const email = emailMatch[0]
+    const [before, after] = value.split(email)
+    return (
+      <>
+        {before}
+        <a href={`mailto:${email}?subject=${encodeURIComponent('Demo access request')}`}>{email}</a>
+        {after}
+      </>
     )
   }
 
