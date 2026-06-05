@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -k -n api,web -c blue,green \"node server.js\" \"vite\"",
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
     "build": "node scripts/run-build.mjs",
     "lint": "eslint .",
@@ -12,10 +12,13 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "dotenv": "^16.6.1",
+    "openai": "^4.104.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "@emnapi/core": "^1.10.0",
     "@emnapi/runtime": "^1.10.0",
     "@eslint/js": "^10.0.1",
