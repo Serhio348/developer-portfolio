@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react'
+import { ChatWidget } from './features/portfolio-chat/components/ChatWidget'
 import './App.css'
 
 type Language = 'en' | 'ru'
@@ -172,6 +173,7 @@ type Content = {
   contactDescription: string
   prevSlide: string
   nextSlide: string
+  chatHint: string
 }
 
 const content: Record<Language, Content> = {
@@ -261,6 +263,7 @@ const content: Record<Language, Content> = {
       'Open to full-stack, frontend, internal tools, and AI integration roles.',
     prevSlide: 'Previous',
     nextSlide: 'Next',
+    chatHint: 'Ask the AI assistant about my projects and experience',
   },
   ru: {
     nav: ['Главная', 'Обо мне', 'Проекты', 'Стек', 'Контакты'],
@@ -348,6 +351,7 @@ const content: Record<Language, Content> = {
       'Открыт к ролям full-stack, frontend, internal tools и AI integrations.',
     prevSlide: 'Назад',
     nextSlide: 'Далее',
+    chatHint: 'Спросите AI-ассистента о проектах и опыте',
   },
 }
 
@@ -499,6 +503,7 @@ function App() {
               <p className="eyebrow reveal-item">{t.badge}</p>
               <h1 className="reveal-item">{t.title}</h1>
               <p className="hero-subtitle reveal-item">{t.subtitle}</p>
+              <p className="hero-chat-hint reveal-item">{t.chatHint}</p>
               <div className="hero-actions reveal-item">
                 <button className="button primary" type="button" onClick={() => goToSlide(2)}>
                   {t.primaryCta}
@@ -728,6 +733,8 @@ function App() {
           →
         </button>
       </div>
+
+      <ChatWidget language={language} />
     </div>
   )
 }
