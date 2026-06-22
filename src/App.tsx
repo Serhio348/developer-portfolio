@@ -141,12 +141,19 @@ const CV_DOWNLOADS = {
   en: { href: '/cv/CV_EN.pdf', filename: 'CV_Siarhei_Sidarovich_EN.pdf' },
 } as const
 
+type StackGroup = {
+  title: string
+  items: string[]
+}
+
 type Content = {
   nav: string[]
   languageLabel: string
   badge: string
   title: string
+  titleMobile: string
   subtitle: string
+  subtitleMobile: string
   primaryCta: string
   secondaryCta: string
   githubCta: string
@@ -164,6 +171,7 @@ type Content = {
   projectsSubtitle: string
   stackTitle: string
   stack: string[]
+  stackGroups: StackGroup[]
   demoTitle: string
   demoDescription: string
   demoItems: string[][]
@@ -186,8 +194,11 @@ const content: Record<Language, Content> = {
     languageLabel: 'RU',
     badge: 'Full-stack Developer',
     title: 'Production-grade web apps with AI, automation, and real business value.',
+    titleMobile: 'Web apps with AI, automation, and real business value.',
     subtitle:
       'I build MCP servers that connect AI agents to Google Drive, Sheets, and production data — plus full-stack apps on React, TypeScript, Node.js, and Supabase.',
+    subtitleMobile:
+      'MCP servers and full-stack apps on React, TypeScript, Node.js, and Supabase.',
     primaryCta: 'View projects',
     secondaryCta: 'Download CV',
     githubCta: 'GitHub',
@@ -244,6 +255,24 @@ const content: Record<Language, Content> = {
       'Railway',
       'Cursor IDE',
     ],
+    stackGroups: [
+      {
+        title: 'AI / MCP',
+        items: ['MCP', 'Model Context Protocol', 'MCP SDK', 'Zod', 'Claude API', 'Gemini API', 'DeepSeek', 'SSE'],
+      },
+      {
+        title: 'Frontend',
+        items: ['React', 'TypeScript', 'Ant Design', 'Redux Toolkit', 'React Flow'],
+      },
+      {
+        title: 'Backend & Data',
+        items: ['Node.js', 'Express', 'JWT', 'Prisma', 'Supabase', 'PostgreSQL', 'TimescaleDB'],
+      },
+      {
+        title: 'Integrations & DevOps',
+        items: ['Google Drive API', 'Google Sheets', 'Telegram Bot API', 'grammy', 'Modbus TCP', 'Docker', 'Railway', 'Cursor IDE'],
+      },
+    ],
     demoTitle: 'Demo access',
     demoDescription: 'Live demos and production deployments.',
     demoItems: [
@@ -275,8 +304,11 @@ const content: Record<Language, Content> = {
     languageLabel: 'EN',
     badge: 'Full-stack разработчик',
     title: 'Production-ready веб-приложения с AI, автоматизацией и бизнес-ценностью.',
+    titleMobile: 'Веб-приложения с AI, автоматизацией и бизнес-ценностью.',
     subtitle:
       'Разрабатываю MCP-серверы для подключения AI-агентов к Google Drive, Sheets и производственным данным — и full-stack приложения на React, TypeScript, Node.js, Supabase.',
+    subtitleMobile:
+      'MCP-серверы и full-stack приложения на React, TypeScript, Node.js и Supabase.',
     primaryCta: 'Смотреть проекты',
     secondaryCta: 'Скачать CV',
     githubCta: 'GitHub',
@@ -332,6 +364,24 @@ const content: Record<Language, Content> = {
       'SSE',
       'Railway',
       'Cursor IDE',
+    ],
+    stackGroups: [
+      {
+        title: 'AI / MCP',
+        items: ['MCP', 'Model Context Protocol', 'MCP SDK', 'Zod', 'Claude API', 'Gemini API', 'DeepSeek', 'SSE'],
+      },
+      {
+        title: 'Frontend',
+        items: ['React', 'TypeScript', 'Ant Design', 'Redux Toolkit', 'React Flow'],
+      },
+      {
+        title: 'Backend и данные',
+        items: ['Node.js', 'Express', 'JWT', 'Prisma', 'Supabase', 'PostgreSQL', 'TimescaleDB'],
+      },
+      {
+        title: 'Интеграции и DevOps',
+        items: ['Google Drive API', 'Google Sheets', 'Telegram Bot API', 'grammy', 'Modbus TCP', 'Docker', 'Railway', 'Cursor IDE'],
+      },
     ],
     demoTitle: 'Демо-доступ',
     demoDescription: 'Демо и production-деплои.',
@@ -403,14 +453,58 @@ function getSlideState(
   return 'is-idle'
 }
 
+type ProjectCardProps = {
+  project: ProjectItem
+  language: Language
+  labels: Pick<Content, 'projectRepoCta' | 'liveDemoCta'>
+  className?: string
+  style?: CSSProperties
+}
+
+function ProjectCard({ project, language, labels, className, style }: ProjectCardProps) {
+  return (
+    <article className={className} style={style}>
+      <p className="section-kicker">{project.eyebrow[language]}</p>
+      <h3>{project.title[language]}</h3>
+      <p className="project-card-description">{project.description[language]}</p>
+      <ul className="project-card-highlights">
+        {project.highlights[language].map((highlight) => (
+          <li key={highlight}>{highlight}</li>
+        ))}
+      </ul>
+      <div className="project-card-tags">
+        {project.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+      <div className="project-card-links">
+        <a className="button secondary" href={project.repoUrl} target="_blank" rel="noreferrer">
+          {labels.projectRepoCta}
+        </a>
+        {project.demoUrl ? (
+          <a className="button ghost" href={project.demoUrl} target="_blank" rel="noreferrer">
+            {labels.liveDemoCta}
+          </a>
+        ) : null}
+      </div>
+      {project.demoNote ? (
+        <p className="project-card-note">{project.demoNote[language]}</p>
+      ) : null}
+    </article>
+  )
+}
+
 function App() {
   const [language, setLanguage] = useState<Language>('ru')
   const [activeSlide, setActiveSlide] = useState(0)
   const [leavingSlide, setLeavingSlide] = useState<number | null>(null)
   const [direction, setDirection] = useState<SlideDirection>('forward')
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isNavOpen, setIsNavOpen] = useState(false)
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0)
   const t = content[language]
   const cvDownload = CV_DOWNLOADS[language]
+  const brandName = language === 'ru' ? PROFILE.nameRu : PROFILE.nameEn
 
   const stats = useMemo(
     () =>
@@ -433,6 +527,7 @@ function App() {
       return
     }
 
+    setIsNavOpen(false)
     setDirection(index > activeSlide ? 'forward' : 'backward')
     setLeavingSlide(activeSlide)
     setIsAnimating(true)
@@ -451,26 +546,97 @@ function App() {
     goToSlide(Math.max(activeSlide - 1, 0))
   }, [activeSlide, goToSlide])
 
+  const goNextProject = useCallback(() => {
+    setActiveProjectIndex((current) => Math.min(current + 1, PROJECTS.length - 1))
+  }, [])
+
+  const goPrevProject = useCallback(() => {
+    setActiveProjectIndex((current) => Math.max(current - 1, 0))
+  }, [])
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight' || event.key === 'PageDown') {
         event.preventDefault()
+        if (activeSlide === 2 && activeProjectIndex < PROJECTS.length - 1) {
+          goNextProject()
+          return
+        }
         goNext()
       }
 
       if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
         event.preventDefault()
+        if (activeSlide === 2 && activeProjectIndex > 0) {
+          goPrevProject()
+          return
+        }
         goPrev()
+      }
+
+      if (event.key === 'Escape') {
+        setIsNavOpen(false)
       }
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [goNext, goPrev])
+  }, [activeProjectIndex, activeSlide, goNext, goNextProject, goPrev, goPrevProject])
+
+  useEffect(() => {
+    document.body.classList.toggle('nav-open', isNavOpen)
+    return () => document.body.classList.remove('nav-open')
+  }, [isNavOpen])
+
+  useEffect(() => {
+    let touchStartX = 0
+    let touchStartY = 0
+
+    const onTouchStart = (event: TouchEvent) => {
+      if (isNavOpen || event.touches.length !== 1) return
+      touchStartX = event.touches[0].clientX
+      touchStartY = event.touches[0].clientY
+    }
+
+    const onTouchEnd = (event: TouchEvent) => {
+      if (isNavOpen || isAnimating) return
+
+      const touch = event.changedTouches[0]
+      const deltaX = touch.clientX - touchStartX
+      const deltaY = touch.clientY - touchStartY
+      const minSwipe = 56
+
+      if (Math.abs(deltaX) < minSwipe || Math.abs(deltaX) < Math.abs(deltaY)) {
+        return
+      }
+
+      if (activeSlide === 2) {
+        if (deltaX < 0) {
+          goNextProject()
+        } else {
+          goPrevProject()
+        }
+        return
+      }
+
+      if (deltaX < 0) {
+        goNext()
+      } else {
+        goPrev()
+      }
+    }
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [activeSlide, goNext, goNextProject, goPrev, goPrevProject, isAnimating, isNavOpen])
 
   return (
     <div
-      className={`portfolio-shell dir-${direction}${isAnimating ? ' is-transitioning' : ''}`}
+      className={`portfolio-shell dir-${direction}${isAnimating ? ' is-transitioning' : ''}${isNavOpen ? ' is-nav-open' : ''}`}
       data-slide={activeSlide}
       style={{ '--slide-progress': `${((activeSlide + 1) / SLIDE_COUNT) * 100}%` } as CSSProperties}
     >
@@ -489,9 +655,13 @@ function App() {
           aria-label="Portfolio home"
         >
           <span className="brand-mark">S</span>
-          <span>{language === 'ru' ? PROFILE.nameRu : PROFILE.nameEn} / Full-stack</span>
+          <span className="brand-text">
+            <span className="brand-name">{brandName}</span>
+            <span className="brand-role">Full-stack</span>
+          </span>
         </button>
-        <nav aria-label="Primary navigation">
+
+        <nav id="site-nav" className={isNavOpen ? 'is-open' : undefined} aria-label="Primary navigation">
           {t.nav.map((item, index) => (
             <button
               key={item}
@@ -503,13 +673,42 @@ function App() {
             </button>
           ))}
         </nav>
+
+        <div className="site-header-actions">
+          <button
+            className="language-button"
+            type="button"
+            onClick={() => setLanguage((current) => (current === 'en' ? 'ru' : 'en'))}
+          >
+            {t.languageLabel}
+          </button>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-expanded={isNavOpen}
+            aria-controls="site-nav"
+            aria-label={
+              isNavOpen
+                ? language === 'ru'
+                  ? 'Закрыть меню'
+                  : 'Close menu'
+                : language === 'ru'
+                  ? 'Открыть меню'
+                  : 'Open menu'
+            }
+            onClick={() => setIsNavOpen((current) => !current)}
+          >
+            <span aria-hidden="true">{isNavOpen ? '×' : '☰'}</span>
+          </button>
+        </div>
+
         <button
-          className="language-button"
+          className="nav-backdrop"
           type="button"
-          onClick={() => setLanguage((current) => (current === 'en' ? 'ru' : 'en'))}
-        >
-          {t.languageLabel}
-        </button>
+          aria-label={language === 'ru' ? 'Закрыть меню' : 'Close menu'}
+          onClick={() => setIsNavOpen(false)}
+          tabIndex={isNavOpen ? 0 : -1}
+        />
       </header>
 
       <div className={`slides-viewport${isAnimating ? ' is-transitioning' : ''}`}>
@@ -520,8 +719,14 @@ function App() {
           <div className="slide-content hero-layout">
             <div className="hero-copy">
               <p className="eyebrow reveal-item">{t.badge}</p>
-              <h1 className="reveal-item">{t.title}</h1>
-              <p className="hero-subtitle reveal-item">{t.subtitle}</p>
+              <h1 className="reveal-item">
+                <span className="hero-title-desktop">{t.title}</span>
+                <span className="hero-title-mobile">{t.titleMobile}</span>
+              </h1>
+              <p className="hero-subtitle reveal-item">
+                <span className="hero-subtitle-desktop">{t.subtitle}</span>
+                <span className="hero-subtitle-mobile">{t.subtitleMobile}</span>
+              </p>
               <p className="hero-chat-hint reveal-item">{t.chatHint}</p>
               <div className="hero-actions reveal-item">
                 <button className="button primary" type="button" onClick={() => goToSlide(2)}>
@@ -595,41 +800,60 @@ function App() {
               <h2>{t.projectsTitle}</h2>
               <p>{t.projectsSubtitle}</p>
             </div>
-            <div className="projects-grid">
+            <div className="projects-grid projects-grid--desktop">
               {PROJECTS.map((project, index) => (
-                <article
+                <ProjectCard
                   key={project.id}
+                  project={project}
+                  language={language}
+                  labels={t}
                   className={`project-card reveal-item${project.featured ? ' is-featured' : ''}`}
                   style={{ '--reveal-index': index } as CSSProperties}
-                >
-                  <p className="section-kicker">{project.eyebrow[language]}</p>
-                  <h3>{project.title[language]}</h3>
-                  <p className="project-card-description">{project.description[language]}</p>
-                  <ul className="project-card-highlights">
-                    {project.highlights[language].map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
-                  <div className="project-card-tags">
-                    {project.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                  <div className="project-card-links">
-                    <a className="button secondary" href={project.repoUrl} target="_blank" rel="noreferrer">
-                      {t.projectRepoCta}
-                    </a>
-                    {project.demoUrl ? (
-                      <a className="button ghost" href={project.demoUrl} target="_blank" rel="noreferrer">
-                        {t.liveDemoCta}
-                      </a>
-                    ) : null}
-                  </div>
-                  {project.demoNote ? (
-                    <p className="project-card-note">{project.demoNote[language]}</p>
-                  ) : null}
-                </article>
+                />
               ))}
+            </div>
+
+            <div className="projects-mobile">
+              <ProjectCard
+                key={PROJECTS[activeProjectIndex].id}
+                project={PROJECTS[activeProjectIndex]}
+                language={language}
+                labels={t}
+                className={`project-card project-card--mobile${PROJECTS[activeProjectIndex].featured ? ' is-featured' : ''}`}
+              />
+              <div className="project-pager" aria-label={t.projectsTitle}>
+                <button
+                  type="button"
+                  className="project-pager-arrow"
+                  onClick={goPrevProject}
+                  disabled={activeProjectIndex === 0}
+                  aria-label={t.prevSlide}
+                >
+                  ←
+                </button>
+                <div className="project-pager-dots" role="tablist">
+                  {PROJECTS.map((project, index) => (
+                    <button
+                      key={project.id}
+                      type="button"
+                      role="tab"
+                      className={index === activeProjectIndex ? 'is-active' : undefined}
+                      aria-selected={index === activeProjectIndex}
+                      aria-label={project.title[language]}
+                      onClick={() => setActiveProjectIndex(index)}
+                    />
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  className="project-pager-arrow"
+                  onClick={goNextProject}
+                  disabled={activeProjectIndex === PROJECTS.length - 1}
+                  aria-label={t.nextSlide}
+                >
+                  →
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -640,8 +864,9 @@ function App() {
         >
           <div className="slide-content stack-layout">
             <p className="section-kicker reveal-item">{t.stackTitle}</p>
-            <h2 className="reveal-item">MCP · Modbus · React · TypeScript · Node.js · AI</h2>
-            <div className="stack-list">
+            <h2 className="reveal-item stack-heading-desktop">MCP · Modbus · React · TypeScript · Node.js · AI</h2>
+            <h2 className="reveal-item stack-heading-mobile">React · TypeScript · Node.js · AI · MCP</h2>
+            <div className="stack-list stack-list--desktop">
               {t.stack.map((technology, index) => (
                 <span
                   key={technology}
@@ -650,6 +875,18 @@ function App() {
                 >
                   {technology}
                 </span>
+              ))}
+            </div>
+            <div className="stack-groups stack-groups--mobile">
+              {t.stackGroups.map((group) => (
+                <section key={group.title} className="stack-group">
+                  <h3>{group.title}</h3>
+                  <div className="stack-list">
+                    {group.items.map((technology) => (
+                      <span key={technology}>{technology}</span>
+                    ))}
+                  </div>
+                </section>
               ))}
             </div>
           </div>
