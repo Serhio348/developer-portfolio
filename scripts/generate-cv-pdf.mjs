@@ -42,8 +42,9 @@ function buildHeaderTemplate(meta) {
       margin: 0;
       padding: 0 12mm;
       font-family: Inter, Arial, Helvetica, sans-serif;
-      font-size: 8.5px;
+      font-size: 8px;
       color: #6b7280;
+      line-height: 1.2;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
@@ -52,13 +53,13 @@ function buildHeaderTemplate(meta) {
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding-bottom: 4px;
+      padding-bottom: 3px;
       border-bottom: 1px solid rgba(91, 124, 250, 0.2);
     }
     .cv-running-name {
       color: #111827;
       font-weight: 700;
-      font-size: 9px;
+      font-size: 8.6px;
       letter-spacing: -0.02em;
     }
     .cv-running-role {
@@ -66,7 +67,7 @@ function buildHeaderTemplate(meta) {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      font-size: 7.5px;
+      font-size: 7.2px;
     }
   </style>
   <section>
@@ -84,8 +85,9 @@ function buildFooterTemplate(meta) {
       margin: 0;
       padding: 0 12mm;
       font-family: Inter, Arial, Helvetica, sans-serif;
-      font-size: 7.5px;
+      font-size: 7px;
       color: #6b7280;
+      line-height: 1.2;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
@@ -94,7 +96,7 @@ function buildFooterTemplate(meta) {
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding-top: 4px;
+      padding-top: 3px;
       border-top: 1px solid rgba(91, 124, 250, 0.2);
     }
     .cv-running-page {
@@ -123,9 +125,9 @@ for (const source of sources) {
       pdf_options: {
         format: 'A4',
         margin: {
-          top: '14mm',
+          top: '22mm',
           right: '0',
-          bottom: '14mm',
+          bottom: '22mm',
           left: '0',
         },
         printBackground: true,

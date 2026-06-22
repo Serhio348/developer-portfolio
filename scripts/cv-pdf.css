@@ -2,7 +2,8 @@
 
 @page {
   size: A4;
-  margin: 0;
+  /* Reserve space for Puppeteer header/footer. */
+  margin: 22mm 0;
   background: #f4f6f9;
 }
 
@@ -12,7 +13,8 @@ html {
 
 body {
   margin: 0;
-  padding: 10mm 12mm;
+  /* Horizontal padding stays here; vertical spacing is handled by @page margin. */
+  padding: 0 12mm;
   color: #1f2937;
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 9.8pt;
